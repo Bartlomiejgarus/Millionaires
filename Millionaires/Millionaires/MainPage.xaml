@@ -1,32 +1,33 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="YourNamespace.MainPage">
+             x:Class="Millionaires.MainPage"
+             BackgroundColor="DeepSkyBlue">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*" />
-            <RowDefinition Height="3*" />
-            <RowDefinition Height="4*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="25*" />
+            <RowDefinition Height="50*" />
         </Grid.RowDefinitions>
-        <!-- Pierwszy panel z zdjęciem -->
-        <StackLayout Grid.Row="0">
-            <Image Source="your_image.png" Aspect="AspectFit" />
+        <!-- Pierwszy panel z pytaniem -->
+        <StackLayout Grid.Row="0" BackgroundColor="White" Margin="5">
+            <Label Text="Pytanie: Jaki jest kolor nieba?" FontSize="Large" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" />
         </StackLayout>
         <!-- Drugi panel z kołami ratunkowymi -->
-        <StackLayout Grid.Row="1" Orientation="Vertical">
-            <Button Text="50:50" />
-            <Button Text="Telefon do przyjaciela" />
-            <Button Text="Pytanie do publiczności" />
+        <StackLayout Grid.Row="1" Orientation="Vertical" BackgroundColor="DeepSkyBlue" Margin="5" >
+            <Button Text="50:50" FontSize="Large" BorderColor="Black" BorderWidth="1" BackgroundColor="LimeGreen" VerticalOptions="FillAndExpand"/>
+            <Button Text="Telefon do przyjaciela" FontSize="Large" BorderColor="Black" BorderWidth="1" BackgroundColor="LimeGreen" VerticalOptions="FillAndExpand"/>
+            <Button Text="Pytanie do publiczności" FontSize="Large" BorderColor="Black" BorderWidth="1" BackgroundColor="LimeGreen" VerticalOptions="FillAndExpand"/>
         </StackLayout>
         <!-- Trzeci panel z odpowiedziami a,b,c,d -->
-        <StackLayout Grid.Row="2" Orientation="Vertical">
-            <StackLayout Orientation="Horizontal">
-                <Button Text="A" HorizontalOptions="FillAndExpand" />
-                <Button Text="B" HorizontalOptions="FillAndExpand" />
+        <StackLayout Grid.Row="2" Orientation="Vertical" BackgroundColor="DeepSkyBlue"  Margin="10">
+            <StackLayout Orientation="Horizontal"   VerticalOptions="FillAndExpand">
+                <Button Text="A" FontSize="Large" BorderColor="Black" BorderWidth="1" BackgroundColor="White" HorizontalOptions="FillAndExpand"/>
+                <Button Text="B" FontSize="Large" BorderColor="Black" BorderWidth="1" BackgroundColor="White" HorizontalOptions="FillAndExpand"/>
             </StackLayout>
-            <StackLayout Orientation="Horizontal">
-                <Button Text="C" HorizontalOptions="FillAndExpand" />
-                <Button Text="D" HorizontalOptions="FillAndExpand" />
+            <StackLayout Orientation="Horizontal"  VerticalOptions="FillAndExpand">
+                <Button Text="C" FontSize="Large" BorderColor="Black" BorderWidth="1" BackgroundColor="White" HorizontalOptions="FillAndExpand"/>
+                <Button Text="D" FontSize="Large" BorderColor="Black" BorderWidth="1" BackgroundColor="White" HorizontalOptions="FillAndExpand"/>
             </StackLayout>
         </StackLayout>
     </Grid>
