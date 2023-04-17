@@ -12,6 +12,7 @@ namespace Millionaires
     {
         public MainPage()
         {
+            InitializeComponent();
         }
     }
 }
