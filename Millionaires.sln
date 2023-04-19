@@ -7,7 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Millionaires.Android", "Mil
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Millionaires.iOS", "Millionaires\Millionaires.iOS\Millionaires.iOS.csproj", "{85B6F120-6570-4312-919D-E266303474CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Millionaires", "Millionaires\Millionaires\Millionaires.csproj", "{70580DC2-E76F-4CA2-80BB-68C749530000}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Millionaires", "Millionaires\Millionaires\Millionaires.csproj", "{70580DC2-E76F-4CA2-80BB-68C749530000}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F032A77E-F5CE-4F17-9E6D-E62811268CCE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
