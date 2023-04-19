@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using Xamarin.Essentials;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -14,6 +16,7 @@ namespace Millionaires
         private TriviaQuestion currentQuestion;
         private int questionIndex;
         private bool fiftyFiftyUsed;
+        private bool askTheAudienceUsed;
 
         public MainPage()
         {
@@ -65,8 +68,6 @@ namespace Millionaires
             fiftyFiftyUsed = false;
         }
 
-
-
         private async void AnswerButton_Clicked(object sender, EventArgs e)
         {
             Button button = (Button)sender;
@@ -107,8 +108,34 @@ namespace Millionaires
                 }
 
                 fiftyFiftyUsed = true;
+                FiftyFiftyButton.IsEnabled = false; // Disable the 50:50 button after it's used
             }
         }
+
+
+        private void AskTheAudienceButton_Clicked(object sender, EventArgs e)
+        {
+            if (!askTheAudienceUsed)
+            {
+                ShowPercentages();
+                askTheAudienceUsed = true;
+                AskTheAudienceButton.IsEnabled = false;
+            }
+        }
+
+
+        private void ShowPercentages()
+        {
+            var answerButtons = new List<Button> { ButtonA, ButtonB, ButtonC, ButtonD };
+            Random random = new Random();
+
+            foreach (Button button in answerButtons)
+            {
+                int percentage = random.Next(1, 100);
+                button.Text = $"{button.Text} ({percentage}%)";
+            }
+        }
+
     }
 
     public class TriviaQuestion

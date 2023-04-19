@@ -1,35 +1,169 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Millionaires.MainPage"
-             BackgroundColor="DeepSkyBlue">
+<ContentPage
+    x:Class="Millionaires.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="DeepSkyBlue">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="25*" />
             <RowDefinition Height="30*" />
             <RowDefinition Height="50*" />
         </Grid.RowDefinitions>
-        <!-- Pierwszy panel z pytaniem -->
-        <StackLayout Grid.Row="0" BackgroundColor="White" Margin="5">
-            <Label x:Name="QuestionLabel" Text="Pytanie: Jaki jest kolor nieba?" FontSize="Large" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" />
+
+        <!--  First panel with the question  -->
+        <StackLayout
+            Grid.Row="0"
+            Margin="5"
+            BackgroundColor="White">
+            <Label
+                x:Name="QuestionLabel"
+                FontSize="Large"
+                HorizontalTextAlignment="Center"
+                Text="Pytanie: Jaki jest kolor nieba?"
+                VerticalOptions="CenterAndExpand" />
         </StackLayout>
-        <!-- Drugi panel z kołami ratunkowymi -->
-        <StackLayout Grid.Row="1" Orientation="Vertical" BackgroundColor="DeepSkyBlue" Margin="5" >
-            <Button x:Name="FiftyFiftyButton" Text="50:50" FontSize="Large" BorderColor="Black" BorderWidth="1" BackgroundColor="LimeGreen" VerticalOptions="FillAndExpand" Clicked="FiftyFiftyButton_Clicked"/>
-            <Button Text="Telefon do przyjaciela" FontSize="Large" BorderColor="Black" BorderWidth="1" BackgroundColor="LimeGreen" VerticalOptions="FillAndExpand"/>
-            <Button Text="Pytanie do publiczności" FontSize="Large" BorderColor="Black" BorderWidth="1" BackgroundColor="LimeGreen" VerticalOptions="FillAndExpand"/>
-            <Button Text="Rezygnacja" FontSize="Large" BorderColor="Black" BorderWidth="1" BackgroundColor="Red" VerticalOptions="FillAndExpand" Clicked="RezygnacjaButton_Clicked"/>
+
+        <!--  Second panel with lifelines  -->
+        <StackLayout
+            Grid.Row="1"
+            Margin="5"
+            BackgroundColor="DeepSkyBlue"
+            Orientation="Vertical">
+            <Button
+                x:Name="FiftyFiftyButton"
+                BackgroundColor="LimeGreen"
+                BorderColor="Black"
+                BorderWidth="1"
+                Clicked="FiftyFiftyButton_Clicked"
+                FontSize="Large"
+                Text="50:50"
+                VerticalOptions="FillAndExpand" />
+            <Button
+                BackgroundColor="LimeGreen"
+                BorderColor="Black"
+                BorderWidth="1"
+                FontSize="Large"
+                Text="Telefon do przyjaciela"
+                VerticalOptions="FillAndExpand" />
+
+            <Button
+                x:Name="AskTheAudienceButton"
+                BackgroundColor="LimeGreen"
+                BorderColor="Black"
+                BorderWidth="1"
+                Clicked="AskTheAudienceButton_Clicked"
+                FontSize="Large"
+                Text="Pytanie do publiczności"
+                VerticalOptions="FillAndExpand" />
+
+            <Button
+                BackgroundColor="Red"
+                BorderColor="Black"
+                BorderWidth="1"
+                Clicked="RezygnacjaButton_Clicked"
+                FontSize="Large"
+                Text="Rezygnacja"
+                VerticalOptions="FillAndExpand" />
         </StackLayout>
-        <!-- Trzeci panel z odpowiedziami a,b,c,d -->
-        <StackLayout Grid.Row="2" Orientation="Vertical" BackgroundColor="DeepSkyBlue"  Margin="10">
-            <StackLayout Orientation="Horizontal"   VerticalOptions="FillAndExpand">
-                <Button x:Name="ButtonA" Text="A" FontSize="Large" BorderColor="Black" BorderWidth="1" BackgroundColor="White" HorizontalOptions="FillAndExpand" Clicked="AnswerButton_Clicked"/>
-                <Button x:Name="ButtonB" Text="B" FontSize="Large" BorderColor="Black" BorderWidth="1" BackgroundColor="White" HorizontalOptions="FillAndExpand" Clicked="AnswerButton_Clicked"/>
+
+        <!--  Third panel with answers A, B, C, and D  -->
+        <StackLayout
+            Grid.Row="2"
+            Margin="10"
+            BackgroundColor="DeepSkyBlue"
+            Orientation="Vertical">
+            <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                <Button
+                    x:Name="ButtonA"
+                    BackgroundColor="White"
+                    BorderColor="Black"
+                    BorderWidth="1"
+                    Clicked="AnswerButton_Clicked"
+                    FontSize="Large"
+                    HorizontalOptions="FillAndExpand"
+                    Text="A" />
+                <Button
+                    x:Name="ButtonB"
+                    BackgroundColor="White"
+                    BorderColor="Black"
+                    BorderWidth="1"
+                    Clicked="AnswerButton_Clicked"
+                    FontSize="Large"
+                    HorizontalOptions="FillAndExpand"
+                    Text="B" />
             </StackLayout>
-            <StackLayout Orientation="Horizontal"  VerticalOptions="FillAndExpand">
-                <Button x:Name="ButtonC" Text="C" FontSize="Large" BorderColor="Black" BorderWidth="1" BackgroundColor="White" HorizontalOptions="FillAndExpand" Clicked="AnswerButton_Clicked"/>
-                <Button x:Name="ButtonD" Text="D" FontSize="Large" BorderColor="Black" BorderWidth="1" BackgroundColor="White" HorizontalOptions="FillAndExpand" Clicked="AnswerButton_Clicked"/>
+            <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
+                <Button
+                    x:Name="ButtonC"
+                    BackgroundColor="White"
+                    BorderColor="Black"
+                    BorderWidth="1"
+                    Clicked="AnswerButton_Clicked"
+                    FontSize="Large"
+                    HorizontalOptions="FillAndExpand"
+                    Text="C" />
+                <Button
+                    x:Name="ButtonD"
+                    BackgroundColor="White"
+                    BorderColor="Black"
+                    BorderWidth="1"
+                    Clicked="AnswerButton_Clicked"
+                    FontSize="Large"
+                    HorizontalOptions="FillAndExpand"
+                    Text="D" />
             </StackLayout>
+
+            <!--  Overlay grid with percentages  -->
+            <Grid x:Name="PercentageGrid" IsVisible="False">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <BoxView
+                    Grid.RowSpan="2"
+                    Grid.ColumnSpan="2"
+                    Opacity="0.6"
+                    Color="Black" />
+
+                <Label
+                    x:Name="PercentageLabelA"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    FontSize="Large"
+                    HorizontalOptions="Center"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+                <Label
+                    x:Name="PercentageLabelB"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    FontSize="Large"
+                    HorizontalOptions="Center"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+                <Label
+                    x:Name="PercentageLabelC"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    FontSize="Large"
+                    HorizontalOptions="Center"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+                <Label
+                    x:Name="PercentageLabelD"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    FontSize="Large"
+                    HorizontalOptions="Center"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+            </Grid>
         </StackLayout>
     </Grid>
 </ContentPage>
