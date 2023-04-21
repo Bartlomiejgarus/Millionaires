@@ -16,7 +16,7 @@ namespace Millionaires
         private Question currentQuestion;
         private int questionIndex;
         private bool askTheAudienceUsed;
-        public int stage;
+        public Stage stage;
 
         public GamePage()
         {
@@ -27,7 +27,8 @@ namespace Millionaires
         private void InitGame()
         {
             InitButtons();
-
+            stage = Stage.Zero;
+            questionIndex = 0;
             questions = Question.LoadQuestions();
             DisplayQuestion();
         }
@@ -55,13 +56,16 @@ namespace Millionaires
             Button button = (Button)sender;
             if (button.Text.StartsWith(currentQuestion.CorrectAnswer))
             {
-                await DisplayAlert("Poprawna odpowiedź", "Gratulacje! Wybrałeś właściwą odpowiedź.", "Następne pytanie");
+                stage++;
+                await DisplayAlert("Poprawna odpowiedź", "Gratulacje! Wybrałeś " + stage.Prize(), "Następne pytanie");
+
                 questionIndex++;
                 DisplayQuestion();
             }
             else
             {
-                await DisplayAlert("Błędna odpowiedź", "Niestety, to nie jest prawidłowa odpowiedź.", "Spróbuj ponownie");
+                await DisplayAlert("Błędna odpowiedź", "Twoja wygrana "+ stage.LastGuaranteed().Prize(), "Spróbuj ponownie");
+                InitGame();
             }
         }
 
