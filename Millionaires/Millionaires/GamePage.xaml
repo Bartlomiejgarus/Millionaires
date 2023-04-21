@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage
-    x:Class="Millionaires.MainPage"
+    x:Class="Millionaires.GamePage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     BackgroundColor="DeepSkyBlue">
@@ -40,6 +40,7 @@
                 Text="50:50"
                 VerticalOptions="FillAndExpand" />
             <Button
+                x:Name="PhoneToFriendButton"
                 BackgroundColor="LimeGreen"
                 BorderColor="Black"
                 BorderWidth="1"

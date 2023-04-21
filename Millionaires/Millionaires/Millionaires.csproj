@@ -17,15 +17,21 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="trivia.txt" />
+    <None Remove="data.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="trivia.txt" />
+    <EmbeddedResource Include="data.txt" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="GamePage.xaml.cs">
+      <DependentUpon>GamePage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 </Project>

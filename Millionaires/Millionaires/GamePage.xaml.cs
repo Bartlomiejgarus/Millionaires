@@ -10,62 +10,44 @@ using Xamarin.Forms;
 
 namespace Millionaires
 {
-    public partial class MainPage : ContentPage
+    public partial class GamePage : ContentPage
     {
-        private List<TriviaQuestion> questions;
-        private TriviaQuestion currentQuestion;
+        private List<Question> questions;
+        private Question currentQuestion;
         private int questionIndex;
-        private bool fiftyFiftyUsed;
         private bool askTheAudienceUsed;
+        public int stage;
 
-        public MainPage()
+        public GamePage()
         {
             InitializeComponent();
-            LoadQuestions();
+            InitGame();
+        }
+
+        private void InitGame()
+        {
+            InitButtons();
+
+            questions = Question.LoadQuestions();
             DisplayQuestion();
         }
 
-        private void LoadQuestions()
+        private void InitButtons() //When the game begins, all lifelines are active
         {
-            questions = new List<TriviaQuestion>();
-            var assembly = IntrospectionExtensions.GetTypeInfo(typeof(MainPage)).Assembly;
-            Stream stream = assembly.GetManifestResourceStream("Millionaires.trivia.txt");
-
-            using (var reader = new StreamReader(stream))
-            {
-                while (!reader.EndOfStream)
-                {
-                    TriviaQuestion question = new TriviaQuestion
-                    {
-                        Question = reader.ReadLine(),
-                        OptionA = reader.ReadLine(),
-                        OptionB = reader.ReadLine(),
-                        OptionC = reader.ReadLine(),
-                        OptionD = reader.ReadLine(),
-                        CorrectAnswer = reader.ReadLine()
-                    };
-                    questions.Add(question);
-                }
-            }
-            questions = questions.OrderBy(x => Guid.NewGuid()).ToList();
+            AskTheAudienceButton.IsEnabled = FiftyFiftyButton.IsEnabled = PhoneToFriendButton.IsEnabled = true;
         }
 
         private void DisplayQuestion()
         {
             currentQuestion = questions[questionIndex];
-            QuestionLabel.Text = $"{currentQuestion.Question}";
+            QuestionLabel.Text = $"{currentQuestion.QuestionText}";
             ButtonA.Text = $"{currentQuestion.OptionA}";
             ButtonB.Text = $"{currentQuestion.OptionB}";
             ButtonC.Text = $"{currentQuestion.OptionC}";
             ButtonD.Text = $"{currentQuestion.OptionD}";
 
             // Enable all the answer buttons
-            ButtonA.IsEnabled = true;
-            ButtonB.IsEnabled = true;
-            ButtonC.IsEnabled = true;
-            ButtonD.IsEnabled = true;
-
-            fiftyFiftyUsed = false;
+            ButtonA.IsEnabled = ButtonB.IsEnabled = ButtonC.IsEnabled = ButtonD.IsEnabled = true;
         }
 
         private async void AnswerButton_Clicked(object sender, EventArgs e)
@@ -94,22 +76,18 @@ namespace Millionaires
 
         private void FiftyFiftyButton_Clicked(object sender, EventArgs e)
         {
-            if (!fiftyFiftyUsed)
+            var remainingOptions = new List<Button> { ButtonA, ButtonB, ButtonC, ButtonD };
+            remainingOptions.RemoveAll(b => b.Text.StartsWith(currentQuestion.CorrectAnswer));
+
+            Random random = new Random();
+            for (int i = 0; i < 2; i++)
             {
-                var remainingOptions = new List<Button> { ButtonA, ButtonB, ButtonC, ButtonD };
-                remainingOptions.RemoveAll(b => b.Text.StartsWith(currentQuestion.CorrectAnswer));
-
-                Random random = new Random();
-                for (int i = 0; i < 2; i++)
-                {
-                    int indexToRemove = random.Next(remainingOptions.Count);
-                    remainingOptions[indexToRemove].IsEnabled = false;
-                    remainingOptions.RemoveAt(indexToRemove);
-                }
-
-                fiftyFiftyUsed = true;
-                FiftyFiftyButton.IsEnabled = false; // Disable the 50:50 button after it's used
+                int indexToRemove = random.Next(remainingOptions.Count);
+                remainingOptions[indexToRemove].IsEnabled = false;
+                remainingOptions.RemoveAt(indexToRemove);
             }
+
+            FiftyFiftyButton.IsEnabled = false; // Disable the 50:50 button after it's used
         }
 
 
@@ -136,15 +114,5 @@ namespace Millionaires
             }
         }
 
-    }
-
-    public class TriviaQuestion
-    {
-        public string Question { get; set; }
-        public string OptionA { get; set; }
-        public string OptionB { get; set; }
-        public string OptionC { get; set; }
-        public string OptionD { get; set; }
-        public string CorrectAnswer { get; set; }
     }
 }
