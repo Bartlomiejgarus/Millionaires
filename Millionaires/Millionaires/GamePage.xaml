@@ -82,7 +82,7 @@
                     BorderColor="Black"
                     BorderWidth="1"
                     Clicked="AnswerButton_Clicked"
-                    FontSize="Large"
+                    FontSize="Medium"
                     HorizontalOptions="FillAndExpand"
                     Text="A" />
                 <Button
@@ -91,7 +91,7 @@
                     BorderColor="Black"
                     BorderWidth="1"
                     Clicked="AnswerButton_Clicked"
-                    FontSize="Large"
+                    FontSize="Medium"
                     HorizontalOptions="FillAndExpand"
                     Text="B" />
             </StackLayout>
@@ -102,7 +102,7 @@
                     BorderColor="Black"
                     BorderWidth="1"
                     Clicked="AnswerButton_Clicked"
-                    FontSize="Large"
+                    FontSize="Medium"
                     HorizontalOptions="FillAndExpand"
                     Text="C" />
                 <Button
@@ -111,7 +111,7 @@
                     BorderColor="Black"
                     BorderWidth="1"
                     Clicked="AnswerButton_Clicked"
-                    FontSize="Large"
+                    FontSize="Medium"
                     HorizontalOptions="FillAndExpand"
                     Text="D" />
             </StackLayout>
