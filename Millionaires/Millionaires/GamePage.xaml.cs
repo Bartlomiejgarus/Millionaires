@@ -17,6 +17,10 @@ namespace Millionaires
         private int questionIndex;
         public Stage stage;
 
+        private PhoneToFriend phoneToFriend;
+        private AskTheAudience askTheAudience;
+        private FiftyFifty fiftyFifty;
+
         public GamePage()
         {
             InitializeComponent();
@@ -32,6 +36,8 @@ namespace Millionaires
             DisplayQuestion();
         }
 
+        /// <summary></summary>
+        /// <remarks></remarks>
         private void InitButtons() //When the game begins, all lifelines are active
         {
             AskTheAudienceButton.IsEnabled = FiftyFiftyButton.IsEnabled = PhoneToFriendButton.IsEnabled = true;
@@ -86,9 +92,9 @@ namespace Millionaires
             }
         }
 
-        private void PhoneToFriendButton_Clicked(object sender, EventArgs e) => UseLifeline(new PhoneToFriend(this, currentQuestion.QuestionText), (Button)sender);
-        private void AskTheAudienceButton_Clicked(object sender, EventArgs e) => UseLifeline(new AskTheAudience(), (Button)sender);
-        private void FiftyFiftyButton_Clicked(object sender, EventArgs e) => UseLifeline(new FiftyFifty(), (Button)sender);
+        private void PhoneToFriendButton_Clicked(object sender, EventArgs e) => UseLifeline(phoneToFriend = new PhoneToFriend(this, currentQuestion.QuestionText), (Button)sender);
+        private void AskTheAudienceButton_Clicked(object sender, EventArgs e) => UseLifeline(askTheAudience = new AskTheAudience(), (Button)sender);
+        private void FiftyFiftyButton_Clicked(object sender, EventArgs e) => UseLifeline(fiftyFifty = new FiftyFifty(), (Button)sender);
 
         private void UseLifeline(ILifeline lifeline, Button lifelineButton)
         {
