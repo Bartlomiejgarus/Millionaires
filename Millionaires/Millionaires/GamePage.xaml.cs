@@ -15,7 +15,6 @@ namespace Millionaires
         private List<Question> questions;
         private Question currentQuestion;
         private int questionIndex;
-        private bool askTheAudienceUsed;
         public Stage stage;
 
         public GamePage()
@@ -57,10 +56,18 @@ namespace Millionaires
             if (button.Text.StartsWith(currentQuestion.CorrectAnswer))
             {
                 stage++;
-                await DisplayAlert("Poprawna odpowiedź", "Gratulacje! Wybrałeś " + stage.Prize(), "Następne pytanie");
+                if ((int)stage == 12)
+                {
+                    await DisplayAlert("Poprawna odpowiedź", "Gratulacje! Wybrałeś " + stage.Prize(), "Zagraj jeszcze raz");
+                    InitGame();
+                }
+                else
+                {
+                    await DisplayAlert("Poprawna odpowiedź", "Gratulacje! Wybrałeś " + stage.Prize(), "Następne pytanie");
 
-                questionIndex++;
-                DisplayQuestion();
+                    questionIndex++;
+                    DisplayQuestion();
+                }
             }
             else
             {
@@ -74,49 +81,23 @@ namespace Millionaires
             bool answer = await DisplayAlert("Rezygnacja", "Czy na pewno chcesz zakończyć grę?", "Tak", "Nie");
             if (answer)
             {
-                System.Diagnostics.Process.GetCurrentProcess().CloseMainWindow();
+                await DisplayAlert("Gra zakończona", "Twoja wygrana " + stage.LastGuaranteed().Prize(), "Spróbuj ponownie");
+                InitGame();
             }
         }
 
-        private void FiftyFiftyButton_Clicked(object sender, EventArgs e)
+        private void PhoneToFriendButton_Clicked(object sender, EventArgs e) => UseLifeline(new PhoneToFriend(this, currentQuestion.QuestionText), (Button)sender);
+        private void AskTheAudienceButton_Clicked(object sender, EventArgs e) => UseLifeline(new AskTheAudience(), (Button)sender);
+        private void FiftyFiftyButton_Clicked(object sender, EventArgs e) => UseLifeline(new FiftyFifty(), (Button)sender);
+
+        private void UseLifeline(ILifeline lifeline, Button lifelineButton)
         {
-            var remainingOptions = new List<Button> { ButtonA, ButtonB, ButtonC, ButtonD };
-            remainingOptions.RemoveAll(b => b.Text.StartsWith(currentQuestion.CorrectAnswer));
+            var buttons = new List<Button> { ButtonA, ButtonB, ButtonC, ButtonD }.Where(button => button.IsEnabled).ToList();
 
-            Random random = new Random();
-            for (int i = 0; i < 2; i++)
-            {
-                int indexToRemove = random.Next(remainingOptions.Count);
-                remainingOptions[indexToRemove].IsEnabled = false;
-                remainingOptions.RemoveAt(indexToRemove);
-            }
-
-            FiftyFiftyButton.IsEnabled = false; // Disable the 50:50 button after it's used
+            lifeline.UseLifeline(buttons, currentQuestion.CorrectAnswer);
+            lifelineButton.IsEnabled = false; //Disable lifeline
         }
 
-
-        private void AskTheAudienceButton_Clicked(object sender, EventArgs e)
-        {
-            if (!askTheAudienceUsed)
-            {
-                ShowPercentages();
-                askTheAudienceUsed = true;
-                AskTheAudienceButton.IsEnabled = false;
-            }
-        }
-
-
-        private void ShowPercentages()
-        {
-            var answerButtons = new List<Button> { ButtonA, ButtonB, ButtonC, ButtonD };
-            Random random = new Random();
-
-            foreach (Button button in answerButtons)
-            {
-                int percentage = random.Next(1, 100);
-                button.Text = $"{button.Text} ({percentage}%)";
-            }
-        }
 
     }
 }

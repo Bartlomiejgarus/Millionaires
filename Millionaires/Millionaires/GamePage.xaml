@@ -44,6 +44,7 @@
                 BackgroundColor="LimeGreen"
                 BorderColor="Black"
                 BorderWidth="1"
+                Clicked="PhoneToFriendButton_Clicked"
                 FontSize="Large"
                 Text="Telefon do przyjaciela"
                 VerticalOptions="FillAndExpand" />

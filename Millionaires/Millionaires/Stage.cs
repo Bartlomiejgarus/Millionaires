@@ -55,7 +55,6 @@ namespace Millionaires
         Eleventh = 11,
 
         [StringValue("1 000 000 zł")]
-        [Guaranteed(false)]
         Twelfth = 12
     }
 
