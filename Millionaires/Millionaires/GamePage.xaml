@@ -4,13 +4,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     BackgroundColor="DeepSkyBlue">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="25*" />
-            <RowDefinition Height="30*" />
-            <RowDefinition Height="50*" />
-        </Grid.RowDefinitions>
-
+    <Grid RowDefinitions="25*,30*,45*">
         <!--  First panel with the question  -->
         <StackLayout
             Grid.Row="0"
@@ -70,102 +64,55 @@
         </StackLayout>
 
         <!--  Third panel with answers A, B, C, and D  -->
-        <StackLayout
+        <Grid
             Grid.Row="2"
-            Margin="10"
+            Margin="2"
             BackgroundColor="DeepSkyBlue"
-            Orientation="Vertical">
-            <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
-                <Button
-                    x:Name="ButtonA"
-                    BackgroundColor="White"
-                    BorderColor="Black"
-                    BorderWidth="1"
-                    Clicked="AnswerButton_Clicked"
-                    FontSize="Medium"
-                    HorizontalOptions="FillAndExpand"
-                    Text="A" />
-                <Button
-                    x:Name="ButtonB"
-                    BackgroundColor="White"
-                    BorderColor="Black"
-                    BorderWidth="1"
-                    Clicked="AnswerButton_Clicked"
-                    FontSize="Medium"
-                    HorizontalOptions="FillAndExpand"
-                    Text="B" />
-            </StackLayout>
-            <StackLayout Orientation="Horizontal" VerticalOptions="FillAndExpand">
-                <Button
-                    x:Name="ButtonC"
-                    BackgroundColor="White"
-                    BorderColor="Black"
-                    BorderWidth="1"
-                    Clicked="AnswerButton_Clicked"
-                    FontSize="Medium"
-                    HorizontalOptions="FillAndExpand"
-                    Text="C" />
-                <Button
-                    x:Name="ButtonD"
-                    BackgroundColor="White"
-                    BorderColor="Black"
-                    BorderWidth="1"
-                    Clicked="AnswerButton_Clicked"
-                    FontSize="Medium"
-                    HorizontalOptions="FillAndExpand"
-                    Text="D" />
-            </StackLayout>
-
-            <!--  Overlay grid with percentages  -->
-            <Grid x:Name="PercentageGrid" IsVisible="False">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <BoxView
-                    Grid.RowSpan="2"
-                    Grid.ColumnSpan="2"
-                    Opacity="0.6"
-                    Color="Black" />
-
-                <Label
-                    x:Name="PercentageLabelA"
-                    Grid.Row="0"
-                    Grid.Column="0"
-                    FontSize="Large"
-                    HorizontalOptions="Center"
-                    TextColor="White"
-                    VerticalOptions="Center" />
-                <Label
-                    x:Name="PercentageLabelB"
-                    Grid.Row="0"
-                    Grid.Column="1"
-                    FontSize="Large"
-                    HorizontalOptions="Center"
-                    TextColor="White"
-                    VerticalOptions="Center" />
-                <Label
-                    x:Name="PercentageLabelC"
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    FontSize="Large"
-                    HorizontalOptions="Center"
-                    TextColor="White"
-                    VerticalOptions="Center" />
-                <Label
-                    x:Name="PercentageLabelD"
-                    Grid.Row="1"
-                    Grid.Column="1"
-                    FontSize="Large"
-                    HorizontalOptions="Center"
-                    TextColor="White"
-                    VerticalOptions="Center" />
-            </Grid>
-        </StackLayout>
+            ColumnDefinitions="*,*" RowDefinitions="*,*">
+            <Button
+                x:Name="ButtonA"
+                Grid.Row="0"
+                Grid.Column="0"
+                BackgroundColor="White"
+                BorderColor="Black"
+                BorderWidth="1"
+                Clicked="AnswerButton_Clicked"
+                FontSize="Medium"
+                HorizontalOptions="FillAndExpand"
+                Text="A" />
+            <Button
+                x:Name="ButtonB"
+                Grid.Row="0"
+                Grid.Column="1"
+                BackgroundColor="White"
+                BorderColor="Black"
+                BorderWidth="1"
+                Clicked="AnswerButton_Clicked"
+                FontSize="Medium"
+                HorizontalOptions="FillAndExpand"
+                Text="B" />
+            <Button
+                x:Name="ButtonC"
+                Grid.Row="1"
+                Grid.Column="0"
+                BackgroundColor="White"
+                BorderColor="Black"
+                BorderWidth="1"
+                Clicked="AnswerButton_Clicked"
+                FontSize="Medium"
+                HorizontalOptions="FillAndExpand"
+                Text="C" />
+            <Button
+                x:Name="ButtonD"
+                Grid.Row="1"
+                Grid.Column="1"
+                BackgroundColor="White"
+                BorderColor="Black"
+                BorderWidth="1"
+                Clicked="AnswerButton_Clicked"
+                FontSize="Medium"
+                HorizontalOptions="FillAndExpand"
+                Text="D" />
+        </Grid>
     </Grid>
 </ContentPage>
