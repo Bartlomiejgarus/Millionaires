@@ -107,6 +107,7 @@ namespace Millionaires
             confirmButton.Clicked += async (sender, e) =>
             {
                 await parentPage.Navigation.PopModalAsync(); // Zamknięcie formatki z czasem
+                layout.Children.Clear();
             };
             layout.Children.Add(titleLabel);
             layout.Children.Add(timeLabel);
@@ -138,11 +139,15 @@ namespace Millionaires
                 await Task.Delay(1000);
             }
 
-            // Po upływie 35 sekund, zamknięcie formatki z czasem
-            await parentPage.Navigation.PopModalAsync();
+            if (timePage != null && timePage.Parent != null)
+            {
 
-            // Wyświetlenie komunikatu z wynikiem na naszej formatce
-            await parentPage.DisplayAlert("Telefon do przyjaciela", "Upłynęło 35 sekund!", "OK");
+                // Po upływie 35 sekund, zamknięcie formatki z czasem
+                await parentPage.Navigation.PopModalAsync();
+
+                // Wyświetlenie komunikatu z wynikiem na naszej formatce
+                await parentPage.DisplayAlert("Telefon do przyjaciela", "Upłynęło 35 sekund!", "OK");
+            }
         }
     }
 
@@ -199,7 +204,11 @@ namespace Millionaires
             Random random = new Random();
             for (int i = 0; i < 2; i++)
             {
-                int indexToRemove = random.Next(posibleToExcept.Count);
+                int indexToRemove = random.Next(posibleToExcept.Count - i);
+
+                if (!posibleToExcept[indexToRemove].IsEnabled)
+                    indexToRemove++;
+
                 posibleToExcept[indexToRemove].IsEnabled = false;
             }
         }
