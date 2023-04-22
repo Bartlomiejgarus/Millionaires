@@ -194,12 +194,13 @@ namespace Millionaires
         public void UseLifeline(List<Button> lActiveButtons, string correctAnswer)
         {
             lActiveButtons.RemoveAll(b => b.Text.StartsWith(correctAnswer));
+            var posibleToExcept = lActiveButtons.Where(b => !b.Text.StartsWith(correctAnswer)).ToList();
 
             Random random = new Random();
             for (int i = 0; i < 2; i++)
             {
-                int indexToRemove = random.Next(lActiveButtons.Count);
-                lActiveButtons[indexToRemove].IsEnabled = false;
+                int indexToRemove = random.Next(posibleToExcept.Count);
+                posibleToExcept[indexToRemove].IsEnabled = false;
             }
         }
     }
